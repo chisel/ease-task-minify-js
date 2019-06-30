@@ -24,7 +24,7 @@ module.exports = ease => {
 This plugin takes a config object similar to [Terser Minify Options](https://www.npmjs.com/package/terser#minify-options) while ignoring the property `sourceMap` and adding the following properties:
   - `dir`: Path to a directory containing all the SASS files, relative to `easeconfig.js`
   - `outDir`: Path to the output directory where the CSS files should be written, relative to `easeconfig.js`
-  - `clearOutDir`: Boolean indicating if the output directory should be emptied first
+  - `cleanOutDir`: Boolean indicating if the output directory should be emptied first
   - `sourceMap`: Boolean indicating if source maps should be generated (will automatically generate the source map options for each file)
 
 # Example
@@ -38,7 +38,7 @@ module.exports = ease => {
   ease.install('minify-js', minifyJs, {
     dir: 'js',
     outDir: 'minified-js',
-    clearOutDir: false,
+    cleanOutDir: false,
     sourceMap: true,
     mangle: {
       toplevel: true
