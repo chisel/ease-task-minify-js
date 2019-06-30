@@ -1,0 +1,33 @@
+{
+  "name": "ease-task-minify-js",
+  "version": "1.0.0",
+  "description": "JS minifier for Ease task runner.",
+  "main": "task.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/chisel/ease-task-minify-js.git"
+  },
+  "keywords": [
+    "ease",
+    "task",
+    "runner",
+    "minify",
+    "js",
+    "plugin"
+  ],
+  "author": "Ramtin Soltani <ramtin@chiselpowered.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chisel/ease-task-minify-js/issues"
+  },
+  "homepage": "https://github.com/chisel/ease-task-minify-js#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
+    "lodash": "^4.17.11",
+    "terser": "^4.0.1"
+  }
+}
