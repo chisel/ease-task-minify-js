@@ -36,8 +36,8 @@ const minifyJs = require('ease-task-minify-js');
 module.exports = ease => {
 
   ease.install('minify-js', minifyJs, {
-    dir: 'css',
-    outDir: 'css',
+    dir: 'js',
+    outDir: 'minified-js',
     clearOutDir: false,
     sourceMap: true,
     mangle: {
