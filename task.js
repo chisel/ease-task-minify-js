@@ -31,7 +31,6 @@ module.exports = (logger, dirname, config) => {
         delete finalOptions.dir;
         delete finalOptions.outDir;
         delete finalOptions.cleanOutDir;
-        delete finalOptions.sourceMap;
 
         logger(`Minifying ${files.length} files...`);
 
@@ -45,37 +44,36 @@ module.exports = (logger, dirname, config) => {
               if ( error ) return reject(error);
 
               // Minify JS
-              const result = terser.minify(data, _.assign(_.cloneDeep(finalOptions), config.sourceMap ? {
-                sourceMap: {
-                  filename: file,
-                  url: file + '.map'
-                }
-              } : {}));
+              terser.minify(data, finalOptions)
+              .then(result => {
 
-              // Throw error
-              if ( result.error ) return reject(new Error(`JS minifier threw the following error:\n${result.error}`));
-              if ( result.warnings && result.warnings.length ) logger(`JS minifier threw the following warnings:\n${result.warnings.reduce((a, b) => `${a}\n${b}`)}`);
+                // Throw error
+                if ( result.error ) return reject(new Error(`JS minifier threw the following error:\n${result.error}`));
+                if ( result.warnings && result.warnings.length ) logger(`JS minifier threw the following warnings:\n${result.warnings.reduce((a, b) => `${a}\n${b}`)}`);
 
-              // Write to file
-              fs.outputFile(path.join(dirname, config.outDir, file), result.code, error => {
+                // Write to file
+                fs.outputFile(path.join(dirname, config.outDir, file), result.code, error => {
 
-                if ( error ) return reject(error);
+                  if ( error ) return reject(error);
 
-                // Write source map
-                if ( result.map && config.sourceMap ) {
+                  // Write source map
+                  if ( result.map && config.sourceMap ) {
 
-                  fs.outputFile(path.join(dirname, config.outDir, file + '.map'), result.map, error => {
+                    fs.outputFile(path.join(dirname, config.outDir, file + '.map'), result.map, error => {
 
-                    if ( error ) return reject(error);
+                      if ( error ) return reject(error);
 
-                    resolve();
+                      resolve();
 
-                  });
+                    });
 
-                }
-                else resolve();
+                  }
+                  else resolve();
 
-              });
+                });
+
+              })
+              .catch(reject);
 
             });
 

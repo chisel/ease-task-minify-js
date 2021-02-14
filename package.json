@@ -25,9 +25,9 @@
   },
   "homepage": "https://github.com/chisel/ease-task-minify-js#readme",
   "dependencies": {
-    "fs-extra": "^8.1.0",
-    "glob": "^7.1.4",
-    "lodash": "^4.17.11",
-    "terser": "^4.0.1"
+    "fs-extra": "^9.1.0",
+    "glob": "^7.1.6",
+    "lodash": "^4.17.20",
+    "terser": "^5.6.0"
   }
 }
